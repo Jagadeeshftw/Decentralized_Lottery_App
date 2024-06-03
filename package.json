@@ -1,0 +1,19 @@
+{
+  "name": "decentralized_lottery_app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jagadeeshftw/Decentralized_Lottery_App.git"
+  },
+  "author": "Jagadeesh B",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jagadeeshftw/Decentralized_Lottery_App/issues"
+  },
+  "homepage": "https://github.com/Jagadeeshftw/Decentralized_Lottery_App#readme",
+  "description": ""
+}
