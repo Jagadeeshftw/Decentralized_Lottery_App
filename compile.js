@@ -3,7 +3,7 @@ const fs = require("fs");
 const solc = require("solc");
 
 // Read the Solidity source code from the file
-const lotteryPath = path.resolve(__dirname, "contracts", "Lottery.sol");
+const lotteryPath = path.resolve(__dirname, "Contract", "Lottery.sol");
 const source = fs.readFileSync(lotteryPath, "utf-8");
 
 // Compile the Solidity source code

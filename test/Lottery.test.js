@@ -24,22 +24,65 @@ beforeEach(async () => {
   txReceipt = await deployer.send({ from: accounts[0], gas: "5000000" });
 });
 
-describe("Inbox", () => {
+describe("Lottery", () => {
   it("deploy the contract", () => {
     //print deployed contract address
     assert.ok(txReceipt.options.address);
   });
 
-  it("has a default string", async () => {
+  it("Allow one account to enter", async () => {
     //print deployed contract address
-    const result = await txReceipt.methods.message().call();
-    assert.equal(result, INITIAL_STRING);
+    await txReceipt.methods
+      .enter()
+      .send({ from: accounts[1], value: web3.utils.toWei("0.02", "ether") });
+
+    const players = await txReceipt.methods
+      .getPlayers()
+      .call({ from: accounts[0] });
+    assert.equal(players[0], accounts[1]);
+    assert.equal(1, players.length);
   });
 
-  it("can change a default string", async () => {
+  it("Allow Multiple accounts to enter", async () => {
     //print deployed contract address
-    await txReceipt.methods.setMessage('Bye there').send({ from: accounts[0] });
-    const result = await txReceipt.methods.message().call();
-    assert.equal(result, 'Bye there');
+    await txReceipt.methods
+      .enter()
+      .send({ from: accounts[1], value: web3.utils.toWei("0.02", "ether") });
+    await txReceipt.methods
+      .enter()
+      .send({ from: accounts[2], value: web3.utils.toWei("0.02", "ether") });
+    const players = await txReceipt.methods
+      .getPlayers()
+      .call({ from: accounts[0] });
+    assert.equal(players[0], accounts[1]);
+    assert.equal(players[1], accounts[2]);
+    assert.equal(2, players.length);
+  });
+
+  it("Require the minimal amount of ether to enter", async () => {
+    try {
+      await txReceipt.methods
+        .enter()
+        .send({
+          from: accounts[1],
+          value: web3.utils.toWei("0.0001", "ether"),
+        });
+      assert(false);
+    } catch (err) {
+      assert(err);
+    }
+  });
+
+  it("Only the manager should pick the winner", async () => {
+    try {
+      await txReceipt.methods
+        .pickWinner()
+        .send({
+          from: accounts[1],
+        });
+      assert(false);
+    } catch (err) {
+      assert(err);
+    }
   });
 });
