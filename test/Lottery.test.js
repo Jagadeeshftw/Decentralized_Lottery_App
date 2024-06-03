@@ -61,12 +61,10 @@ describe("Lottery", () => {
 
   it("Require the minimal amount of ether to enter", async () => {
     try {
-      await txReceipt.methods
-        .enter()
-        .send({
-          from: accounts[1],
-          value: web3.utils.toWei("0.0001", "ether"),
-        });
+      await txReceipt.methods.enter().send({
+        from: accounts[1],
+        value: web3.utils.toWei("0.0001", "ether"),
+      });
       assert(false);
     } catch (err) {
       assert(err);
@@ -75,14 +73,34 @@ describe("Lottery", () => {
 
   it("Only the manager should pick the winner", async () => {
     try {
-      await txReceipt.methods
-        .pickWinner()
-        .send({
-          from: accounts[1],
-        });
+      await txReceipt.methods.pickWinner().send({
+        from: accounts[1],
+      });
       assert(false);
     } catch (err) {
       assert(err);
     }
+  });
+
+  it("Enter the lottery and pick the winner", async () => {
+    await txReceipt.methods
+      .enter()
+      .send({ from: accounts[1], value: web3.utils.toWei("1", "ether") });
+
+    const initialBalance = await web3.eth.getBalance(accounts[1]);
+
+    await txReceipt.methods.pickWinner().send({
+      from: accounts[0],
+    });
+
+    const finalBalance = await web3.eth.getBalance(accounts[1]);
+
+    assert(finalBalance > web3.utils.toWei("99.8", "ether"));
+
+    const players = await txReceipt.methods
+      .getPlayers()
+      .call({ from: accounts[0] });
+
+    assert.equal(0, players.length);
   });
 });
