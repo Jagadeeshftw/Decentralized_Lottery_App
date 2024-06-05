@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSyncProviders } from "../hooks/useSyncProviders";
-const DisplayWallet = ({displayApp}) => {
+const DisplayWallet = () => {
   const [selectedWallet, setSelectedWallet] = useState(null);
   const [userAccount, setUserAccount] = useState("");
   const providers = useSyncProviders();
@@ -34,12 +34,17 @@ const DisplayWallet = ({displayApp}) => {
   };
 
   return (
-    <div className="DisplayWallet">
+    <div
+      className="DisplayWallet bg-dark text-secondary px-4 py-5 text-center"
+      style={{ height: "100vh" }}
+    >
       <h2>Wallets Detected:</h2>
       <div className="providers">
         {providers.length > 0 ? (
           providers.map((provider) => (
             <button
+              type="button"
+              class="btn btn-outline-light btn-lg px-4 mt-4"
               key={provider.info.uuid}
               onClick={() => handleConnect(provider)}
             >
@@ -63,7 +68,13 @@ const DisplayWallet = ({displayApp}) => {
             <div>{selectedWallet?.info.name}</div>
             <div>({formatAddress(userAccount)})</div>
           </div>
-          <button className="btn btn-primary mt-4" style={{width: '13rem'}} onClick={displayApp}>Let's Start</button>
+          <button
+            type="button"
+            class="btn btn-outline-light btn-lg px-4 mt-4"
+            style={{width:'15rem'}}
+          >
+            Let's get started
+          </button>
         </>
       )}
       <div
