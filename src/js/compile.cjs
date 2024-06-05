@@ -23,13 +23,17 @@ const input = {
   settings: {
     outputSelection: {
       '*': {
-        '*': ['*'],
+        '*': ['abi', 'evm.bytecode'],
       },
     },
   },
 };
 
-module.exports = JSON.parse(solc.compile(JSON.stringify(input))).contracts[
-  'Lottery.sol'
-].Lottery;
+// Compile the contract
+const output = JSON.parse(solc.compile(JSON.stringify(input)));
 
+// Export the ABI and bytecode
+const abi = output.contracts['Lottery.sol'].Lottery.abi;
+const evm = output.contracts['Lottery.sol'].Lottery.evm;
+
+module.exports = { abi, evm };
