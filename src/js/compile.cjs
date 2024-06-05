@@ -1,6 +1,6 @@
-const path = require("path");
-const fs = require("fs");
-const solc = require("solc");
+const path = require('path');
+const fs = require('fs');
+const solc = require('solc');
 
 // Read the Solidity source code from the file
 const lotteryPath = path.resolve(
