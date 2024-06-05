@@ -5,7 +5,7 @@ const { Web3 } = require("web3");
 
 let accounts;
 
-const mnemonicPhrase =process.env.MNEMONIC;; // 12 word mnemonic
+const mnemonicPhrase = process.env.MNEMONIC; // 12 word mnemonic
 
 let provider = new HDWalletProvider({
   mnemonic: {
@@ -31,7 +31,7 @@ const deploy = async () => {
 
   //send transaction to the network
   txReceipt = await deployer.send({ from: accounts[0], gas: "1000000" });
-   console.log(abi)
+  console.log(abi);
   console.log("Contract deployed to ", txReceipt.options.address);
   provider.engine.stop();
 };
