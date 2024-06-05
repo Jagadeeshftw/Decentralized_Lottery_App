@@ -29,7 +29,7 @@ const HomePage = ({ displayWallet }) => {
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
             >
-              Learn More
+              How to Participate
             </button>
           </div>
         </div>
@@ -46,7 +46,7 @@ const HomePage = ({ displayWallet }) => {
           <div className="modal-content bg-dark text-secondary">
             <div className="modal-header">
               <h5 className="modal-title display-7 fw-bold text-white" id="exampleModalLabel">
-                Learn More
+                How to Participate
               </h5>
               <button
                 type="button"
@@ -56,11 +56,32 @@ const HomePage = ({ displayWallet }) => {
               ></button>
             </div>
             <div className="modal-body">
+              <h5 className="text-white">Introduction</h5>
               <p>
-                The decentralized lottery system ensures fairness and transparency
-                by leveraging blockchain technology. Every participant has an
-                equal chance of winning, and all transactions are recorded on the
-                blockchain, making them immutable and verifiable.
+                Welcome to our decentralized lottery system. By participating, you have a fair and equal chance to win the entire pool of collected funds. Here’s how it works:
+              </p>
+              
+              <h5 className="text-white">How to Enter</h5>
+              <p>
+                To join the lottery, simply connect your wallet and send at least 0.01 ether. This amount will be added to the lottery pool, and your address will be entered into the draw.
+              </p>
+              
+              <h5 className="text-white">Picking the Winner</h5>
+              <p>
+                Only the manager (the person who deployed the contract) has the authority to pick the winner. The winner is selected randomly, ensuring fairness and transparency. The entire pool is then transferred to the winner’s address.
+              </p>
+              
+              <h5 className="text-white">Rules</h5>
+              <ul>
+                <li>The minimum entry fee is 0.01 ether.</li>
+                <li>Only the manager can pick the winner.</li>
+                <li>The winner is chosen randomly using a combination of block data and participant addresses.</li>
+                <li>All transactions are recorded on the blockchain and are immutable.</li>
+              </ul>
+
+              <h5 className="text-white">Get Started</h5>
+              <p>
+                Ready to try your luck? Connect your wallet and join the lottery now. Good luck!
               </p>
             </div>
             <div className="modal-footer">
@@ -75,10 +96,6 @@ const HomePage = ({ displayWallet }) => {
           </div>
         </div>
       </div>
-
-
-
-
     </div>
   );
 };
