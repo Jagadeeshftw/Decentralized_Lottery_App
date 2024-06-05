@@ -4,9 +4,10 @@ import DisplayWallet from "./components/DisplayWallet";
 import Web3 from "web3";
 import contract from "./js/lottery.js";
 import { useState } from "react";
+import HomePage from "./components/HomePage.jsx";
 
 const App = () => {
-  const [showApp, setShowApp] = useState(false);
+  const [showApp, setShowApp] = useState(true);
   const hello = async () => {
     // Check if Metamask is installed
     if (window.ethereum) {
@@ -26,8 +27,8 @@ const App = () => {
     }
   };
 
-  const displayApp = () => {
-    setShowApp(true);
+  const displayWallet = () => {
+    setShowApp((prev) => !prev);
   };
 
   // Call hello on component mount
@@ -35,7 +36,11 @@ const App = () => {
     hello();
   }, []);
 
-  return <>{showApp ? <h1>Hello</h1> : <DisplayWallet displayApp={displayApp} />}</>;
+  return (
+    <>
+      {showApp ? <HomePage displayWallet={displayWallet}/> : <DisplayWallet  />}
+    </>
+  );
 };
 
 export default App;
