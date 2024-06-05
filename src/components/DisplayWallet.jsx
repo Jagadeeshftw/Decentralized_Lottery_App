@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSyncProviders } from "../hooks/useSyncProviders";
-const DisplayWallet = () => {
+const DisplayWallet = ({displayApp}) => {
   const [selectedWallet, setSelectedWallet] = useState(null);
   const [userAccount, setUserAccount] = useState("");
   const providers = useSyncProviders();
@@ -54,14 +54,17 @@ const DisplayWallet = () => {
       <hr />
       <h2>{userAccount ? "" : "No"} Wallet Selected</h2>
       {userAccount && (
-        <div className="selectedWallet">
-          <img
-            src={selectedWallet?.info.icon}
-            alt={selectedWallet?.info.name}
-          />
-          <div>{selectedWallet?.info.name}</div>
-          <div>({formatAddress(userAccount)})</div>
-        </div>
+        <>
+          <div className="selectedWallet mt-4">
+            <img
+              src={selectedWallet?.info.icon}
+              alt={selectedWallet?.info.name}
+            />
+            <div>{selectedWallet?.info.name}</div>
+            <div>({formatAddress(userAccount)})</div>
+          </div>
+          <button className="btn btn-primary mt-4" style={{width: '13rem'}} onClick={displayApp}>Let's Start</button>
+        </>
       )}
       <div
         className="mmError"
