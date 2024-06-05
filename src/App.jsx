@@ -13,7 +13,6 @@ const App = () => {
     if (window.ethereum) {
       const web3 = new Web3(window.ethereum);
       // Request the user to connect accounts (Metamask will prompt)
-      await window.ethereum.request({ method: "eth_requestAccounts" });
 
       // Get the connected accounts
       const accounts = await web3.eth.getAccounts();
