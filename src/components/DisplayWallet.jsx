@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSyncProviders } from "../hooks/useSyncProviders";
-const DisplayWallet = () => {
+const DisplayWallet = ({ displayPage }) => {
   const [selectedWallet, setSelectedWallet] = useState(null);
   const [userAccount, setUserAccount] = useState("");
   const providers = useSyncProviders();
@@ -44,7 +44,7 @@ const DisplayWallet = () => {
           providers.map((provider) => (
             <button
               type="button"
-              class="btn btn-outline-light btn-lg px-4 mt-4"
+              className="btn btn-outline-light btn-lg px-4 mt-4"
               key={provider.info.uuid}
               onClick={() => handleConnect(provider)}
             >
@@ -70,8 +70,9 @@ const DisplayWallet = () => {
           </div>
           <button
             type="button"
-            class="btn btn-outline-light btn-lg px-4 mt-4"
-            style={{width:'15rem'}}
+            className="btn btn-outline-light btn-lg px-4 mt-4"
+            style={{ width: "15rem" }}
+            onClick={() => displayPage("WelcomePage")}
           >
             Let's get started
           </button>
