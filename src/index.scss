@@ -12,6 +12,12 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
+  --default-color: #212529; /* Default color used for the majority of the text content across the entire website */
+  --heading-color: #001973; /* Color for headings, subheadings and title throughout the website */
+  --accent-color: #0d42ff; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --contrast-color: #ffffff; /* The contrast color is used for elements when the background color is one of the heading, accent, or default colors. Its purpose is to ensure proper contrast and readability when placed over these more dominant colors */
 }
 
 a {
@@ -22,7 +28,6 @@ a {
 a:hover {
   color: #535bf2;
 }
-
 
 h1 {
   font-size: 3.2em;
@@ -53,3 +58,150 @@ button {
     background-color: #f9f9f9;
   }
 }
+
+.hero {
+  --default-color: #ffffff;
+  --background-color: var(--alt-background-color);
+  --heading-color: #ffffff;
+  width: 100%;
+  min-height: 50vh;
+  position: relative;
+  padding: 120px 0 60px 0;
+}
+
+.hero .hero-bg {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 3;
+}
+
+.hero h2 {
+  margin-bottom: 20px;
+  padding: 0;
+  font-size: 48px;
+  font-weight: 700;
+}
+
+@media (max-width: 575px) {
+  .hero h2 {
+    font-size: 30px;
+  }
+}
+
+.hero p {
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 40px;
+}
+
+.hero form {
+  background: var(--default-color);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.hero form .form-control {
+  padding-top: 18px;
+  padding-bottom: 18px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-right: 10px;
+  border: none !important;
+  background: none !important;
+}
+
+.hero form .form-control:hover,
+.hero form .form-control:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.hero form .btn-primary {
+  color: var(--contrast-color);
+  background-color: var(--accent-color);
+  padding: 10px 30px;
+}
+
+.hero form .btn-primary:hover {
+  background-color: color-mix(in srgb, var(--accent-color), transparent 15%);
+}
+
+.hero .stats-item {
+  padding: 30px;
+  width: 100%;
+}
+
+.hero .stats-item span {
+  font-size: 32px;
+  display: block;
+  font-weight: 700;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  position: relative;
+}
+
+.hero .stats-item span:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 20px;
+  height: 3px;
+  background: var(--accent-color);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.hero .stats-item p {
+  padding: 0;
+  margin: 0;
+  font-family: var(--heading-font);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.stats .stats-item {
+  padding: 30px;
+  width: 100%;
+}
+
+.contact .php-email-form button[type="submit"] {
+  color: var(--contrast-color);
+  background: var(--accent-color);
+  border: 0;
+  padding: 10px 30px;
+  transition: 0.4s;
+  border-radius: 4px;
+}
+.cta-btn {
+  font-family: var(--heading-font);
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 12px 40px;
+  border-radius: 5px;
+  transition: 0.5s;
+  margin: 10px;
+  border: 2px solid var(--contrast-color);
+  color: var(--contrast-color);
+  text-decoration: none;
+  color: var(--contrast-color);
+  transition: 0.3s;
+}
+.cta-btn:hover {
+  background: var(--accent-color);
+  color: color-mix(in srgb, var(--contrast-color), transparent 25%);
+  border: 2px solid var(--accent-color);
+}
+
