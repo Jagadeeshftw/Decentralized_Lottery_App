@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HomePage = ({ displayWallet }) => {
+const HomePage = ({ displayPage }) => {
   return (
     <div
       className="bg-dark text-secondary px-4 py-5 text-center"
@@ -19,7 +19,7 @@ const HomePage = ({ displayWallet }) => {
             <button
               type="button"
               className="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold"
-              onClick={displayWallet}
+              onClick={() =>displayPage("Wallet")}
             >
               Connect your wallet
             </button>
