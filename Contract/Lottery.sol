@@ -10,7 +10,7 @@ contract Lottery {
     }
     
     function enter() public payable {
-        require(msg.value > 0.01 ether, "Minimum ether not met");
+        require(msg.value <= 0.001 ether, "Minimum ether not met");
         players.push(msg.sender);
     }
     
