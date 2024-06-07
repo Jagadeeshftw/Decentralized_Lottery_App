@@ -1,20 +1,61 @@
 import React, { useState, useContext, useEffect } from "react";
 import lottery from "../assets/Lottery-machine.png";
 import { LotteryContext } from "../store/Lottery-context";
+import contract from "../js/lottery";
+import Web3 from "web3";
 
 const WelcomePage = () => {
-  const { currentBalance, currentPlayers, userAccount } =
-    useContext(LotteryContext);
+  const {
+    currentBalance,
+    currentPlayers,
+    userAccount,
+    handleCurrentPlayers,
+    handleCurrentBalance,
+  } = useContext(LotteryContext);
   const [ethAddress, setEthAddress] = useState(userAccount);
+  const [participationAmount, setParticipationAmount] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     setEthAddress(userAccount);
   }, [userAccount]);
 
-  const handleSubmit = (event) => {
+  useEffect(() => {
+    if (successMessage) {
+      const timer = setTimeout(() => {
+        setSuccessMessage("");
+      }, 5000); // Hide message after 5 seconds
+      return () => clearTimeout(timer);
+    }
+  }, [successMessage]);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Add functionality for entering the lottery with ethAddress
-    console.log("Entering the lottery with address:", ethAddress);
+    setLoading(true);
+    setSuccessMessage("");
+    try {
+      const web3 = new Web3(window.ethereum);
+      await contract.methods.enter().send({
+        from: ethAddress,
+        value: web3.utils.toWei(participationAmount, "ether"),
+        gas: 1000000,
+      });
+      setSuccessMessage("You have entered into the lottery successfully!");
+      // Get current players
+      const players = await contract.methods.getPlayers().call();
+      handleCurrentPlayers(players);
+      console.log("the current players " + currentPlayers);
+      console.log("the current balance " + currentBalance);
+      // Get current balance
+      const balance = await web3.eth.getBalance(contract.options.address);
+      handleCurrentBalance(web3.utils.fromWei(balance, "ether"));
+    } catch (error) {
+      console.error("Transaction failed", error);
+      setSuccessMessage("Transaction failed. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -29,26 +70,54 @@ const WelcomePage = () => {
               Welcome to the Decentralized Lottery
             </h2>
             <p>
-              Your wallet is connected! Enter the lottery by confirming your
-              Ethereum address below. Stay tuned for updates on the total
-              participants and current prize pool.
+              Your wallet is connected! Confirm your Ethereum address and enter
+              the lottery by providing the entry fee below. The minimum entry
+              fee is 0.001 ETH. Stay tuned for updates on the total participants
+              and current prize pool.
             </p>
 
             <form
               onSubmit={handleSubmit}
-              className="form-search d-flex align-items-stretch mb-3"
+              className="d-flex align-items-stretch mb-3"
             >
-              <input
-                type="text"
-                className="form-control"
-                value={ethAddress}
-                onChange={(e) => setEthAddress(e.target.value)}
-                placeholder="ETH Address"
-              />
-              <button type="submit" className="btn btn-primary">
-                Enter
+              <div className="form-floating" style={{ flex: "3" }}>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={ethAddress}
+                  onChange={(e) => setEthAddress(e.target.value)}
+                  id="floatingAddress"
+                  placeholder="ETH Address"
+                />
+                <label htmlFor="floatingAddress">ETH Address</label>
+              </div>
+
+              <div className="form-floating" style={{ flex: "2" }}>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={participationAmount}
+                  id="floatingFee"
+                  onChange={(e) => setParticipationAmount(e.target.value)}
+                  placeholder="Entry Fee (ETH)"
+                />
+                <label htmlFor="floatingFee">Entry Fee (ETH)</label>
+              </div>
+
+              <button
+                type="submit"
+                className="btn btn-primary"
+                disabled={loading}
+              >
+                {loading ? "Processing..." : "Enter"}
               </button>
             </form>
+
+            {successMessage && (
+              <div className="alert alert-info" role="alert">
+                {successMessage}
+              </div>
+            )}
 
             <div className="row gy-4">
               <div className="col-lg-6 col-6">
