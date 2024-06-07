@@ -1,20 +1,18 @@
 import { useContext } from "react";
 import { useSyncProviders } from "../hooks/useSyncProviders";
 import { LotteryContext } from "../store/Lottery-context";
+
 const DisplayWallet = () => {
   const providers = useSyncProviders();
-  
   const { handleDisplayPage, handleConnect, selectedWallet, userAccount, errorMessage } =
     useContext(LotteryContext);
 
-    const isError = !!errorMessage;
+  const isError = !!errorMessage;
+
   // Display a readable user address.
   const formatAddress = (addr) => {
     const upperAfterLastTwo = addr.slice(0, 2) + addr.slice(2);
-    return `${upperAfterLastTwo.substring(
-      0,
-      5
-    )}...${upperAfterLastTwo.substring(39)}`;
+    return `${upperAfterLastTwo.substring(0, 5)}...${upperAfterLastTwo.substring(39)}`;
   };
 
   return (
@@ -45,10 +43,7 @@ const DisplayWallet = () => {
       {userAccount && (
         <>
           <div className="selectedWallet mt-4">
-            <img
-              src={selectedWallet?.info.icon}
-              alt={selectedWallet?.info.name}
-            />
+            <img src={selectedWallet?.info.icon} alt={selectedWallet?.info.name} />
             <div>{selectedWallet?.info.name}</div>
             <div>({formatAddress(userAccount)})</div>
           </div>
@@ -62,10 +57,7 @@ const DisplayWallet = () => {
           </button>
         </>
       )}
-      <div
-        className="mmError"
-        style={isError ? { backgroundColor: "brown" } : {}}
-      >
+      <div className="mmError" style={isError ? { backgroundColor: "brown" } : {}}>
         {isError && (
           <div onClick={clearError}>
             <strong>Error:</strong> {errorMessage}
