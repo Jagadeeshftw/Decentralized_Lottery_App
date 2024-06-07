@@ -1,15 +1,13 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { useSyncProviders } from "../hooks/useSyncProviders";
-const DisplayWallet = ({ displayPage }) => {
-  const [selectedWallet, setSelectedWallet] = useState(null);
-  const [userAccount, setUserAccount] = useState("");
+import { LotteryContext } from "../store/Lottery-context";
+const DisplayWallet = () => {
   const providers = useSyncProviders();
+  
+  const { handleDisplayPage, handleConnect, selectedWallet, userAccount, errorMessage } =
+    useContext(LotteryContext);
 
-  const [errorMessage, setErrorMessage] = useState("");
-  const clearError = () => setErrorMessage("");
-  const setError = (error) => setErrorMessage(error);
-  const isError = !!errorMessage;
-
+    const isError = !!errorMessage;
   // Display a readable user address.
   const formatAddress = (addr) => {
     const upperAfterLastTwo = addr.slice(0, 2) + addr.slice(2);
@@ -17,20 +15,6 @@ const DisplayWallet = ({ displayPage }) => {
       0,
       5
     )}...${upperAfterLastTwo.substring(39)}`;
-  };
-
-  const handleConnect = async (providerWithInfo) => {
-    try {
-      const accounts = await providerWithInfo.provider.request({
-        method: "eth_requestAccounts",
-      });
-
-      setSelectedWallet(providerWithInfo);
-      setUserAccount(accounts?.[0]);
-    } catch (error) {
-      console.error(error);
-      setError(`Code: ${error.code} \nError Message: ${error.message}`);
-    }
   };
 
   return (
@@ -72,7 +56,7 @@ const DisplayWallet = ({ displayPage }) => {
             type="button"
             className="btn btn-outline-light btn-lg px-4 mt-4"
             style={{ width: "15rem" }}
-            onClick={() => displayPage("WelcomePage")}
+            onClick={() => handleDisplayPage("WelcomePage")}
           >
             Let's get started
           </button>
