@@ -61,15 +61,15 @@ const WelcomePage = () => {
 
   return (
     <section
-      className="hero section bg-dark text-secondary px-0 py-3 text-center"
+      className="hero section bg-dark text-secondary px-0 py-5 text-center"
       style={{ minHeight: "100vh" }}
     >
       <div className="container">
         <div className="row d-flex justify-content-between">
           <div className="col-lg-7 order-2 order-lg-1 d-flex flex-column justify-content-center">
-            <h3 className="display-5 fw-bold text-white">
+            <h4 className="display-6 fw-bold text-white">
               Welcome to the Decentralized Lottery
-            </h3>
+            </h4>
             <p>
               Your wallet is connected! Confirm your Ethereum address and enter
               the lottery by providing the entry fee below. The minimum entry
@@ -116,7 +116,7 @@ const WelcomePage = () => {
               </div>
             )}
 
-            <div className="row">
+            <div className="row mt-0">
               <div className="col-lg-6 col-6">
                 <div className="stats-item text-center w-100 h-100">
                   <span>{currentPlayers.length}</span>
