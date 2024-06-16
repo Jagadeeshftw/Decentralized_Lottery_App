@@ -66,16 +66,19 @@ const WelcomePage = () => {
       <div className="container-fluid">
         <div className="row d-flex justify-content-between">
           <div className="col-lg-7 order-2 order-lg-1 d-flex flex-column justify-content-center">
-            <h4 className="display-6 fw-bold text-white">
+            <h4 className="display-6 fw-bold text-white animate__animated animate__fadeInDown">
               Welcome to the Decentralized Lottery
             </h4>
-            <p>
+            <p className="animate__animated animate__zoomIn">
               Your wallet is connected! Confirm your Ethereum address and enter
               the lottery by providing the entry fee below. The minimum entry
               fee is 0.001 ETH. Stay tuned for updates on the total participants
               and current prize pool.
             </p>
-            <form onSubmit={handleSubmit} className="d-flex py-2">
+            <form
+              onSubmit={handleSubmit}
+              className="d-flex py-2 animate__animated animate__zoomIn"
+            >
               <div className="form-floating" style={{ flex: "5" }}>
                 <input
                   type="text"
@@ -115,7 +118,7 @@ const WelcomePage = () => {
               </div>
             )}
 
-            <div className="row mt-0">
+            <div className="row mt-0 animate__animated animate__fadeInUp">
               <div className="col-lg-6 col-6">
                 <div className="stats-item text-center w-100 h-100">
                   <span>{currentPlayers.length}</span>
@@ -132,8 +135,14 @@ const WelcomePage = () => {
           </div>
 
           <div className="col-lg-5 order-1 order-lg-2 d-flex flex-column align-items-center justify-content-center">
-            <Image src={lottery} alt="" width={600} height={350} />
-            <a className="cta-btn" href="#">
+            <Image
+              src={lottery}
+              alt=""
+              width={600}
+              height={350}
+              className="animate__animated animate__fadeInDown"
+            />
+            <a className="cta-btn animate__animated animate__fadeInUp" href="#">
               Pick Winner
             </a>
           </div>

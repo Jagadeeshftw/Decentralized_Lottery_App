@@ -1,5 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
+import "animate.css";
 import "./index.scss";
 import { LotteryContextProvider } from "../store/Lottery-context";
 
