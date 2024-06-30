@@ -5,6 +5,7 @@ import { LotteryContext } from "../../store/Lottery-context";
 import contract from "../../js/lottery";
 import Web3 from "web3";
 import Image from "next/image";
+import { BackgroundBeams } from "../../components/ui/background-beams";
 
 const WelcomePage = () => {
   const {
@@ -59,17 +60,14 @@ const WelcomePage = () => {
   };
 
   return (
-    <section
-      className="hero section bg-dark text-secondary py-5 px-5 text-center"
-      style={{ minHeight: "100vh" }}
-    >
-      <div className="container-fluid">
+    <section className="hero bg-dark text-secondary py-5 px-5 text-center min-h-full max-w-full ">
+      <div className="container z-50">
         <div className="row d-flex justify-content-between">
-          <div className="col-lg-7 order-2 order-lg-1 d-flex flex-column justify-content-center">
-            <h4 className="display-6 fw-bold text-white animate__animated animate__fadeInDown">
+          <div className="col-lg-7 order-1 d-flex flex-column justify-content-center">
+            <h4 className="text-2xl sm:text-5xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600  text-center font-sans font-bold animate__animated animate__fadeInDown">
               Welcome to the Decentralized Lottery
             </h4>
-            <p className="animate__animated animate__zoomIn">
+            <p className="animate__animated animate__zoomIn mt-6">
               Your wallet is connected! Confirm your Ethereum address and enter
               the lottery by providing the entry fee below. The minimum entry
               fee is 0.001 ETH. Stay tuned for updates on the total participants
@@ -77,7 +75,7 @@ const WelcomePage = () => {
             </p>
             <form
               onSubmit={handleSubmit}
-              className="d-flex py-2 animate__animated animate__zoomIn"
+              className="flex py-2 animate__animated animate__zoomIn sm:flex-row flex-col"
             >
               <div className="form-floating" style={{ flex: "5" }}>
                 <input
@@ -126,15 +124,15 @@ const WelcomePage = () => {
                 </div>
               </div>
               <div className="col-lg-6 col-6">
-                <div className="stats-item text-center w-100 h-100">
-                  <span>{currentBalance} ETH</span>
+                <div className="stats-item text-center w-100 h-100 flex flex-col">
+                  <span className="block">{currentBalance} ETH</span>
                   <p>Current Prize Pool</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="col-lg-5 order-1 order-lg-2 d-flex flex-column align-items-center justify-content-center">
+          <div className="col-lg-5 order-2 d-flex flex-column align-items-center justify-content-center">
             <Image
               src={lottery}
               alt=""
@@ -148,6 +146,7 @@ const WelcomePage = () => {
           </div>
         </div>
       </div>
+      <BackgroundBeams />
     </section>
   );
 };
