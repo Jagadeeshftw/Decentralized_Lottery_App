@@ -4,13 +4,14 @@ pragma solidity ^0.8.0;
 contract Lottery {
     address public manager;
     address[] public players;
+    address public lastWinner; // Variable to store the address of the last winner
     
     constructor() {
         manager = msg.sender;
     }
     
     function enter() public payable {
-        require(msg.value <= 0.001 ether, "Minimum ether not met");
+        require(msg.value >= 0.001 ether, "Minimum ether not met");
         players.push(msg.sender);
     }
     
@@ -20,6 +21,7 @@ contract Lottery {
 
      function pickWinner() public restricted {
         uint index = random() % players.length;
+        lastWinner = players[index]; // Set the last winner
         payable(players[index]).transfer(address(this).balance);
         players = new address[](0) ;
     }
@@ -29,8 +31,11 @@ contract Lottery {
         _;
     }
 
-    function getPlayers() public  view returns ( address[] memory) {
+    function getPlayers() public view returns (address[] memory) {
         return players;
     }
-    
+
+    function getLastWinner() public view returns (address) {
+        return lastWinner; // Return the address of the last winner
+    }
 }
