@@ -19,6 +19,7 @@ const WelcomePage = () => {
   const [participationAmount, setParticipationAmount] = useState("");
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const [winnerMessage, setWinnerMessage] = useState("");
 
   useEffect(() => {
     setEthAddress(userAccount);
@@ -32,6 +33,15 @@ const WelcomePage = () => {
       return () => clearTimeout(timer);
     }
   }, [successMessage]);
+
+  useEffect(() => {
+    if (winnerMessage) {
+      const timer = setTimeout(() => {
+        setWinnerMessage("");
+      }, 5000); // Hide message after 5 seconds
+      return () => clearTimeout(timer);
+    }
+  }, [winnerMessage]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -59,6 +69,31 @@ const WelcomePage = () => {
     }
   };
 
+  const pickWinner = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    setWinnerMessage("");
+    try {
+      const web3 = new Web3(window.ethereum);
+      await contract.methods.pickWinner().send({
+        from: ethAddress,
+        gas: 1000000,
+      });
+      const winner = await contract.methods.getLastWinner().call();
+      setWinnerMessage(`The winner is: ${winner}`);
+      // Update players and balance after picking a winner
+      const players = await contract.methods.getPlayers().call();
+      handleCurrentPlayers(players);
+      const balance = await web3.eth.getBalance(contract.options.address);
+      handleCurrentBalance(parseFloat(web3.utils.fromWei(balance, "ether")));
+    } catch (error) {
+      console.error("Failed to pick a winner", error);
+      setWinnerMessage("Failed to pick a winner. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section className="hero bg-dark text-secondary py-5 px-5 text-center min-h-full max-w-full ">
       <div className="container z-50">
@@ -71,7 +106,8 @@ const WelcomePage = () => {
               Your wallet is connected! Confirm your Ethereum address and enter
               the lottery by providing the entry fee below. The minimum entry
               fee is 0.001 ETH. Stay tuned for updates on the total participants
-              and current prize pool.
+              and current prize pool. Currently, this lottery supports only
+              Sepolia Ethereum.
             </p>
             <form
               onSubmit={handleSubmit}
@@ -140,9 +176,18 @@ const WelcomePage = () => {
               height={350}
               className="animate__animated animate__fadeInDown"
             />
-            <a className="cta-btn animate__animated animate__fadeInUp" href="#">
-              Pick Winner
-            </a>
+            <button
+              disabled={loading}
+              className="cta-btn animate__animated animate__fadeInUp"
+              onClick={pickWinner}
+            >
+              {loading ? "Picking Winner..." : "Pick Winner"}
+            </button>
+            {winnerMessage && (
+              <div className="alert alert-success mt-3" role="alert">
+                {winnerMessage}
+              </div>
+            )}
           </div>
         </div>
       </div>
