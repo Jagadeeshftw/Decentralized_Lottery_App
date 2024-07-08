@@ -4,9 +4,9 @@ Welcome to the Decentralized Lottery App! This project aims to create a transpar
 
 ## 📸 Preview
 
-![Portfolio Preview](./public/preview-1.png)
 ![Portfolio Preview](./public/preview-2.png)
 ![Portfolio Preview](./public/preview-3.png)
+![Portfolio Preview](./public/preview-1.png)
 
 ## 📑Table of Contents
 
