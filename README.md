@@ -1,8 +1,14 @@
-# Decentralized Lottery App
+#🪙 Decentralized Lottery App
 
 Welcome to the Decentralized Lottery App! This project aims to create a transparent, secure, and fair lottery system using blockchain technology. By leveraging smart contracts, we ensure that the lottery is tamper-proof and the results are verifiable.
 
-## Table of Contents
+## 📸 Preview
+
+![Portfolio Preview](./public/preview-1.png)
+![Portfolio Preview](./public/preview-2.png)
+![Portfolio Preview](./public/preview-3.png)
+
+## 📑Table of Contents
 
 - [Introduction](#introduction)
 - [Features](#features)
@@ -30,48 +36,55 @@ The Decentralized Lottery App is built on the Ethereum blockchain. It utilizes s
 To run this project locally, follow these steps:
 
 1. **Clone the repository:**
-   \`\`\`bash
+
+   ```sh
    git clone https://github.com/Jagadeeshftw/Decentralized_Lottery_App.git
    cd Decentralized_Lottery_App
-   \`\`\`
+   ```
 
 2. **Install dependencies:**
-   \`\`\`bash
-   npm install
-   \`\`\`
+
+```sh
+ npm install
+```
 
 3. **Set Infura api key:**
-   \`\`\`bash
+
+   ```sh
    npx hardhat vars set INFURA_API_KEY
-   \`\`\`
+   ```
 
 4. **Set Sepolia private key:**
-   \`\`\`bash
+
+   ```sh
    npx hardhat vars set SEPOLIA_PRIVATE_KEY
-   \`\`\`
+   ```
 
 5. **Compile the smart contracts:**
-   \`\`\`bash
+
+   ```sh
    npx hardhat compile
-   \`\`\`
+   ```
 
 6. **Test the smart contracts:**
-   \`\`\`bash
-   npx hardhat test
-   \`\`\`
+
+```sh
+ npx hardhat test
+```
 
 7. **Start a local node & deploy the Hardhat Ignition module in the sepolia network:**
-   \`\`\`bash
+
+   ```sh
    npx hardhat node
    npx hardhat ignition deploy ./ignition/modules/lottery.ts --network sepolia
-   \`\`\`
+   ```
 
 8. **Run the application:**
-   \`\`\`bash
+   ```sh
    npm run dev
-   \`\`\`
+   ```
 
-## Usage
+## 👤 Usage
 
 1. **Buy Tickets:** Participants can buy lottery tickets by sending Ether to the smart contract.
 2. **Draw Lottery:** The smart contract will randomly select a winner from the participants.
@@ -85,14 +98,14 @@ The smart contract is written in Solidity and deployed on the Ethereum network. 
 - \`drawLottery\`: Selects a random winner from the participants.
 - \`claimWinnings\`: Allows the winner to claim their prize.
 
-## Technologies Used
+## 🛠️ Technologies Used
 
 - **Solidity:** For writing smart contracts.
 - **Truffle:** Development framework for Ethereum.
 - **React:** For building the front-end application.
 - **Web3.js:** For interacting with the Ethereum blockchain.
 
-## Contributing
+## 🤝 Contributing
 
 We welcome contributions to this project. If you would like to contribute, please follow these steps:
 
@@ -102,11 +115,11 @@ We welcome contributions to this project. If you would like to contribute, pleas
 4. Push to the branch (\`git push origin feature/your-feature\`).
 5. Open a pull request.
 
-## License
+## 📝 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## Contact
+## 📧 Contact
 
 For any questions or feedback, please reach out to:
 
