@@ -18,6 +18,7 @@ const WelcomePage = () => {
   const [ethAddress, setEthAddress] = useState(userAccount);
   const [participationAmount, setParticipationAmount] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loadingWinner, setLoadingWinner] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [winnerMessage, setWinnerMessage] = useState("");
 
@@ -71,12 +72,13 @@ const WelcomePage = () => {
 
   const pickWinner = async (event) => {
     event.preventDefault();
-    setLoading(true);
+    setLoadingWinner(true);
     setWinnerMessage("");
     try {
       const web3 = new Web3(window.ethereum);
+      const manager = await contract.methods.manager().call();
       await contract.methods.pickWinner().send({
-        from: ethAddress,
+        from: manager,
         gas: 1000000,
       });
       const winner = await contract.methods.getLastWinner().call();
@@ -90,7 +92,7 @@ const WelcomePage = () => {
       console.error("Failed to pick a winner", error);
       setWinnerMessage("Failed to pick a winner. Please try again.");
     } finally {
-      setLoading(false);
+      setLoadingWinner(false);
     }
   };
 
@@ -177,11 +179,11 @@ const WelcomePage = () => {
               className="animate__animated animate__fadeInDown"
             />
             <button
-              disabled={loading}
+              disabled={loadingWinner}
               className="cta-btn animate__animated animate__fadeInUp"
               onClick={pickWinner}
             >
-              {loading ? "Picking Winner..." : "Pick Winner"}
+              {loadingWinner ? "Picking Winner..." : "Pick Winner"}
             </button>
             {winnerMessage && (
               <div className="alert alert-success mt-3" role="alert">
