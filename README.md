@@ -37,10 +37,10 @@ To run this project locally, follow these steps:
 
 1. **Clone the repository:**
 
-   ```sh
-   git clone https://github.com/Jagadeeshftw/Decentralized_Lottery_App.git
-   cd Decentralized_Lottery_App
-   ```
+```sh
+git clone https://github.com/Jagadeeshftw/Decentralized_Lottery_App.git
+cd Decentralized_Lottery_App
+```
 
 2. **Install dependencies:**
 
@@ -50,21 +50,21 @@ To run this project locally, follow these steps:
 
 3. **Set Infura api key:**
 
-   ```sh
-   npx hardhat vars set INFURA_API_KEY
-   ```
+```sh
+npx hardhat vars set INFURA_API_KEY
+```
 
 4. **Set Sepolia private key:**
 
-   ```sh
-   npx hardhat vars set SEPOLIA_PRIVATE_KEY
-   ```
+```sh
+npx hardhat vars set SEPOLIA_PRIVATE_KEY
+```
 
 5. **Compile the smart contracts:**
 
-   ```sh
-   npx hardhat compile
-   ```
+```sh
+npx hardhat compile
+```
 
 6. **Test the smart contracts:**
 
@@ -74,15 +74,16 @@ To run this project locally, follow these steps:
 
 7. **Start a local node & deploy the Hardhat Ignition module in the sepolia network:**
 
-   ```sh
-   npx hardhat node
-   npx hardhat ignition deploy ./ignition/modules/lottery.ts --network sepolia
-   ```
+```sh
+npx hardhat node
+npx hardhat ignition deploy ./ignition/modules/lottery.ts --network sepolia
+```
 
 8. **Run the application:**
-   ```sh
-   npm run dev
-   ```
+
+```sh
+npm run dev
+```
 
 ## 👤 Usage
 
@@ -101,9 +102,9 @@ The smart contract is written in Solidity and deployed on the Ethereum network. 
 ## 🛠️ Technologies Used
 
 - **Solidity:** For writing smart contracts.
-- **Truffle:** Development framework for Ethereum.
-- **React:** For building the front-end application.
-- **Web3.js:** For interacting with the Ethereum blockchain.
+- **Hardhat & Truffle:** Development framework for Ethereum.
+- **Next:** For building the front-end application.
+- **Web3.js & Ethers.js:** For interacting with the Ethereum blockchain.
 
 ## 🤝 Contributing
 
