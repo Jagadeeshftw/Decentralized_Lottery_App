@@ -1,6 +1,6 @@
-#🪙 Decentralized Lottery App
+# 🪙 Decentralized Lottery App
 
-Welcome to the Decentralized Lottery App! This project aims to create a transparent, secure, and fair lottery system using blockchain technology. By leveraging smart contracts, we ensure that the lottery is tamper-proof and the results are verifiable.
+Welcome to the Decentralized Lottery App! This project aims to create a transparent, secure, fair lottery system using blockchain technology. By leveraging smart contracts, we ensure the lottery is tamper-proof and the results are verifiable.
 
 ## 📸 Preview
 
@@ -29,7 +29,7 @@ The Decentralized Lottery App is built on the Ethereum blockchain. It utilizes s
 - **Decentralized:** Operates on the Ethereum blockchain, removing the need for a central authority.
 - **Transparent:** All transactions and processes are recorded on the blockchain, ensuring transparency.
 - **Secure:** Utilizes smart contracts to manage the lottery, making it tamper-proof.
-- **Fair:** Random winner selection is handled by the smart contract, ensuring fairness.
+- **Fair:** The smart contract handles Random winner selection, ensuring fairness.
 
 ## Installation
 
@@ -48,7 +48,7 @@ cd Decentralized_Lottery_App
  npm install
 ```
 
-3. **Set Infura api key:**
+3. **Set Infura API key:**
 
 ```sh
 npx hardhat vars set INFURA_API_KEY
