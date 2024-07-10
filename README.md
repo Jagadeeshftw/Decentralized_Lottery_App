@@ -97,7 +97,7 @@ The smart contract is written in Solidity and deployed on the Ethereum network. 
 
 - \`buyTicket\`: Allows users to buy a lottery ticket.
 - \`drawLottery\`: Selects a random winner from the participants.
-- \`claimWinnings\`: Allows the winner to claim their prize.
+- \`claimWinnings\`: The winner can claim their prize.
 
 ## 🛠️ Technologies Used
 
@@ -118,7 +118,7 @@ We welcome contributions to this project. If you would like to contribute, pleas
 
 ## 📝 License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. Please have a look at the [LICENSE](LICENSE) file for details.
 
 ## 📧 Contact
 
