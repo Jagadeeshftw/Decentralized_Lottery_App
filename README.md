@@ -103,7 +103,7 @@ The smart contract is written in Solidity and deployed on the Ethereum network. 
 
 - **Solidity:** For writing smart contracts.
 - **Hardhat & Truffle:** Development framework for Ethereum.
-- **Next:** For building the front-end application.
+- **Nextjs:** For building the front-end application.
 - **Web3.js & Ethers.js:** For interacting with the Ethereum blockchain.
 
 ## 🤝 Contributing
